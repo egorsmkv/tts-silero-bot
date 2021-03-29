@@ -8,7 +8,7 @@ import torch
 from torchaudio.backend import sox_backend
 
 from os import remove
-from os.path import dirname
+from os.path import dirname, abspath
 
 import telebot
 from utils import init_jit_model, apply_tts
@@ -59,7 +59,7 @@ def process_voice_message(message):
     s = 0
     for n, audio_tensor in enumerate(audios):
         # form the filename
-        filename = dirname(__file__) + f'/files/file_{n}.ogg'
+        filename = dirname(abspath('__file__')) + f'/files/file_{n}.ogg'
 
         # save to the disk
         sox_backend.save(filename, audio_tensor, SAMPLE_RATE)
