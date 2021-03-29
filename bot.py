@@ -28,7 +28,12 @@ START_MSG = '''Привет!
 Этот бот создан для тестирования Silero TTS: https://github.com/snakers4/silero-models
 '''
 
-FIRST_STEP = 'Использовать бот просто: отправьте текст и ждите аудиосообщение'
+FIRST_STEP = '''Использовать бот просто:
+ 
+1) Добавьте ударения в свой текст с помощью https://morpher.ru/accentizer/
+
+2) Отправьте текст и ждите аудиосообщение
+'''
 
 device = torch.device('cpu')
 
