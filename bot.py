@@ -57,8 +57,7 @@ def process_voice_message(message):
     # normalize the input
     # text_normalized = do_norm(message.text)
     text_normalized = replace_accents(message.text)
-    bot.reply_to(message, 'Нормализованный текст:')
-    bot.reply_to(message, text_normalized)
+    bot.reply_to(message, 'Нормализованный текст:\n\n' + text_normalized)
 
     # do the synthesizing
     audios = apply_tts(texts=[text_normalized],
