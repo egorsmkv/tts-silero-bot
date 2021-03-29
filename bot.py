@@ -11,7 +11,7 @@ from os import remove
 from os.path import dirname, abspath
 
 import telebot
-from utils import init_jit_model, apply_tts
+from utils import init_jit_model, apply_tts, replace_accents
 from normalizer import do_norm
 
 TOKEN = os.environ['TOKEN']
@@ -51,7 +51,8 @@ def process_voice_message(message):
         return
 
     # normalize the input
-    text_normalized = do_norm(message.text)
+    # text_normalized = do_norm(message.text)
+    text_normalized = replace_accents(message.text)
     bot.reply_to(message, 'Нормализованный текст:')
     bot.reply_to(message, text_normalized)
 
