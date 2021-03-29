@@ -12,6 +12,7 @@ from os.path import dirname, abspath
 
 import telebot
 from utils import init_jit_model, apply_tts
+from normalizer import do_norm
 
 TOKEN = os.environ['TOKEN']
 
@@ -46,11 +47,16 @@ def send_welcome(message):
 @bot.message_handler(func=lambda message: True)
 def process_voice_message(message):
     if not message.text:
-        bot.reply_to(message, "А где текст??!")
+        bot.reply_to(message, 'А где текст??!')
         return
 
+    # normalize the input
+    text_normalized = do_norm(message.text)
+    bot.reply_to(message, 'Нормализованный текст:')
+    bot.reply_to(message, text_normalized)
+
     # do the synthesizing
-    audios = apply_tts(texts=[message.text],
+    audios = apply_tts(texts=[text_normalized],
                        model=model,
                        sample_rate=SAMPLE_RATE,
                        symbols=SYMBOLS,
