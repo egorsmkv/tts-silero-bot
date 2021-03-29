@@ -104,11 +104,14 @@ def replace_accents(x):
     final_chars = []
     for i, c in enumerate(chars):
         if c == '+':
-            tmp = final_chars[i - 1]
+            try:
+                tmp = final_chars[i - 1]
 
-            final_chars.pop()
-            final_chars.append('+')
-            final_chars.append(tmp)
+                final_chars.pop()
+                final_chars.append('+')
+                final_chars.append(tmp)
+            except IndexError:
+                final_chars.append(c)
         else:
             final_chars.append(c)
 

@@ -10,3 +10,6 @@ SoundFile = "==0.10.3.post1"
 omegaconf = "==2.0.4"
 pyTelegramBotAPI = "==3.7.3"
 tqdm = "*"
+#lxml = "*"
+#dawg = "*"
+#russian_g2p = { editable = true, ref = "fd193533979d2d7c1957988f54ac92adbb880ab8", git = "https://github.com/nsu-ai/russian_g2p.git" }
