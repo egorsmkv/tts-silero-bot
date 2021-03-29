@@ -5,14 +5,13 @@ warnings.simplefilter('ignore')
 import os
 import logging
 import torch
-from torchaudio.backend import sox_backend
+from torchaudio.backend import soundfile_backend
 
 from os import remove
 from os.path import dirname, abspath
 
 import telebot
 from utils import init_jit_model, apply_tts, replace_accents
-from normalizer import do_norm
 
 TOKEN = os.environ['TOKEN']
 
@@ -71,10 +70,10 @@ def process_voice_message(message):
     s = 0
     for n, audio_tensor in enumerate(audios):
         # form the filename
-        filename = dirname(abspath('__file__')) + f'/files/file_{n}.ogg'
+        filename = dirname(abspath('__file__')) + f'/files/file_{n}.wav'
 
         # save to the disk
-        sox_backend.save(filename, audio_tensor, SAMPLE_RATE)
+        soundfile_backend.save(filename, audio_tensor, SAMPLE_RATE)
 
         # send back to the user
         audio = open(filename, 'rb')
