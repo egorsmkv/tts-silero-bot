@@ -100,16 +100,16 @@ def apply_tts(texts: list,
 def pluses_to_accents(x: str):
     chars = list(x)
 
-    idx = 0
+    idx = -1
     final_chars = []
     for i, c in enumerate(chars):
         if c == '+':
             idx = i
         else:
-            if idx:
+            if idx != -1:
                 final_chars.append(c.encode('utf-8'))
                 final_chars.append(b'\xcc\x81')
-                idx = 0
+                idx = -1
             else:
                 final_chars.append(c.encode('utf-8'))
 
