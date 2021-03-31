@@ -62,6 +62,14 @@ def process_voice_message(message):
     # replace accents into pluses
     text_normalized = replace_accents(text_with_accents)
 
+    if not text_normalized:
+        bot.reply_to(message, 'Ошибка: а где текст?')
+        return
+
+    # add a dot if it is not set
+    if text_normalized[-1] != '.':
+        text_normalized = text_normalized + '.'
+
     text_len = len(text_normalized)
     if text_len > 150:
         bot.reply_to(message, f'Ошибка: ваш текст больше 150 символов, а именно {text_len}')
