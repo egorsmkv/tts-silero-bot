@@ -36,7 +36,7 @@ FIRST_STEP = '''Использовать бот просто:
 
 device = torch.device('cpu')
 
-jit_model = dirname(__file__) + '/model/v1_natasha_16000.jit'
+jit_model = dirname(__file__) + '/model/v1_kseniya_16000.jit'
 model = init_jit_model(jit_model, device=device)
 
 bot = telebot.TeleBot(TOKEN, parse_mode=None)

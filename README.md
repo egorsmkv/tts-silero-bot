@@ -13,7 +13,7 @@ Download the model:
 
 ```
 cd model
-wget https://models.silero.ai/models/tts/ru/v1_natasha_16000.jit
+wget https://models.silero.ai/models/tts/ru/v1_kseniya_16000.jit
 ```
 
 Run the bot:
