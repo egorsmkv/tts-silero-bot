@@ -11,7 +11,7 @@ from os import remove
 from os.path import dirname, abspath
 
 import telebot
-from utils import init_jit_model, apply_tts, replace_accents
+from utils import init_jit_model, apply_tts, replace_accents, pluses_to_accents
 
 TOKEN = os.environ['TOKEN']
 
@@ -55,8 +55,18 @@ def process_voice_message(message):
         return
 
     # normalize the input
-    # text_normalized = do_norm(message.text)
-    text_normalized = replace_accents(message.text)
+
+    # convert pluses into accents
+    text_normalized = pluses_to_accents(message.text)
+
+    # replace accents into pluses
+    text_normalized = replace_accents(text_normalized)
+
+    text_len = len(text_normalized)
+    if text_len > 150:
+        bot.reply_to(message, f'Ошибка: ваш текст больше 150 символов, а именно {text_len}')
+        return
+
     bot.reply_to(message, 'Нормализованный текст:\n\n' + text_normalized)
 
     # do the synthesizing

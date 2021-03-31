@@ -97,6 +97,25 @@ def apply_tts(texts: list,
     return audios
 
 
+def pluses_to_accents(x: str):
+    chars = list(x)
+
+    idx = 0
+    final_chars = []
+    for i, c in enumerate(chars):
+        if c == '+':
+            idx = i
+        else:
+            if idx:
+                final_chars.append(c.encode('utf-8'))
+                final_chars.append(b'\xcc\x81')
+                idx = 0
+            else:
+                final_chars.append(c.encode('utf-8'))
+
+    return ''.join([c.decode('utf-8') for c in final_chars])
+
+
 def replace_accents(x):
     # the code of Gods
     chars = list(x.encode('utf-8').replace(b'\xcc\x81', b'+').decode('utf-8'))
