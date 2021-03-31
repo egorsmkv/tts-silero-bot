@@ -57,17 +57,17 @@ def process_voice_message(message):
     # normalize the input
 
     # convert pluses into accents
-    text_normalized = pluses_to_accents(message.text)
+    text_with_accents = pluses_to_accents(message.text)
 
     # replace accents into pluses
-    text_normalized = replace_accents(text_normalized)
+    text_normalized = replace_accents(text_with_accents)
 
     text_len = len(text_normalized)
     if text_len > 150:
         bot.reply_to(message, f'Ошибка: ваш текст больше 150 символов, а именно {text_len}')
         return
 
-    bot.reply_to(message, 'Нормализованный текст:\n\n' + text_normalized)
+    bot.reply_to(message, f'Текст c ударениями:\n\n{text_with_accents}\n\nНормализованный текст:\n\n{text_normalized}')
 
     # do the synthesizing
     audios = apply_tts(texts=[text_normalized],
