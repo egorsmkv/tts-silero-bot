@@ -67,7 +67,8 @@ def process_voice_message(message):
         return
 
     # add a dot if it is not set
-    if text_normalized[-1] != '.':
+    last_char = text_normalized[-1]
+    if last_char not in ['.', '!', '?']:
         text_normalized = text_normalized + '.'
 
     text_len = len(text_normalized)
